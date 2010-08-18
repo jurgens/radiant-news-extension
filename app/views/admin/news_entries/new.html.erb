@@ -6,7 +6,7 @@
   <div id='content'>
     <div class='form-area'>
       <% #@news_entry.user ||= current_user %>
-      <% form_for [:admin, @news_entry] do |form|%>
+      <% form_for [:admin, @news_entry], :html => {:multipart => true} do |form|%>
         <p class='title'>
           <%= form.label :headline %>
           <%= form.text_field :headline, :class => 'textbox', :maxlength => 255 %>
@@ -43,6 +43,12 @@
         <p class="label">
           <%= form.label :user %>
           <%= form.select :user_id, User.all.collect {|u| [u.name, u.id]} %>
+        </p>
+        <p class="label">
+          <%= form.label :image %>
+          <%= image_tag form.object.image.url("100x100"), :style => "padding: 5px" unless form.object.image.nil? %>
+          <br/>
+          <%= form.file_field :image %>
         </p>
         <br />
         <p class="buttons">

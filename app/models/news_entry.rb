@@ -7,6 +7,8 @@ class NewsEntry < ActiveRecord::Base
 
   belongs_to :user
 
+  image_accessor :image
+
   def before_save
     uncategorized_tag = NewsCategory.find_by_name('uncategorized')
     NewsCategory.new(:name => 'uncategorized').save! unless uncategorized_tag

@@ -1,5 +1,5 @@
 module NewsTags
-    include Radiant::Taggable
+  include Radiant::Taggable
 
   desc %{
     Gets scrolltext with active news.
@@ -135,6 +135,25 @@ module NewsTags
   }
   tag 'news:author' do |tag|
     tag.locals.news.user.name unless tag.locals.news.user.blank?
+  end
+
+  desc %{
+    Returns image for news entry
+    *Usage:*
+    <pre><code>
+      <r:news:image size="200x100" class="news-image"/>
+    </code></pre>
+  }
+  tag 'news:image' do |tag|
+    size = :jpg
+    size = tag.attr['size'] if tag.attr['size']
+    html_class = nil
+    html_class ||= tag.attr['class']
+
+    unless tag.locals.news.image.nil?
+      url = tag.locals.news.image.url(size)
+      %{<img src="#{url}" class="#{html_class}"/>}
+    end
   end
 
   def currentnews(parameter)
