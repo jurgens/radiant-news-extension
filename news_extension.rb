@@ -15,12 +15,14 @@ class NewsExtension < Radiant::Extension
   end
   
   def activate
-    admin.tabs.add "News", "/admin/news_entries", :after => "Layouts", :visibility => [:all]
+    tab "Content" do
+      add_item "News", "/admin/news_entries", :after => "Pages", :visibility => [:all]
+    end
+    
     Page.send :include,  NewsTags
   end
   
   def deactivate
-    admin.tabs.remove "News"
+    #admin.tabs.remove "News"
   end
-  
 end

@@ -4,6 +4,8 @@ class NewsEntry < ActiveRecord::Base
   validates_presence_of  :headline
   validates_presence_of  :leadtext
   validates_presence_of  :start
+
+  belongs_to :user
   
   def before_save
     uncategorized_tag = NewsCategory.find_by_name('uncategorized')

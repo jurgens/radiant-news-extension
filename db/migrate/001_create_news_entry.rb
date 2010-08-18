@@ -1,8 +1,9 @@
 class CreateNewsEntry < ActiveRecord::Migration
   def self.up
     create_table :news_entries, :force => true do |t|
+      t.integer :user_id
       t.string :headline
-      t.string :leadtext
+      t.text :leadtext
       t.text :text
       t.date :start
       t.date :stop

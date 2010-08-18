@@ -37,6 +37,11 @@
           <%= form.label :stop %>
           <%= calendar_date_select :news_entry, :stop %>
         </p>
+        <p class="label">
+          <%= form.label :user %>
+          <%= form.select :user_id, User.all.collect {|u| [u.name, u.id]} %>
+        </p>
+
         <br />
         <p class="buttons">
           <%= save_model_button(@news_entry) %>

@@ -21,9 +21,12 @@ class Admin::NewsEntriesController <  Admin::ResourceController
   
   def new
     @news_categories = NewsCategory.find(:all, :order => "name ASC")
+    @news_entry.user = current_user
   end
+
   def edit
-    @news_categories = NewsCategory.find(:all, :order => "name ASC")    
+    @news_categories = NewsCategory.find(:all, :order => "name ASC")
+    @news_entry.user ||= current_user
   end
   
   def index

@@ -5,6 +5,7 @@
 <div id='main'>
   <div id='content'>
     <div class='form-area'>
+      <% #@news_entry.user ||= current_user %>
       <% form_for [:admin, @news_entry] do |form|%>
         <p class='title'>
           <%= form.label :headline %>
@@ -38,6 +39,10 @@
         <p class='label'>
           <%= form.label :stop %>
           <%= calendar_date_select :news_entry, :stop %>
+        </p>
+        <p class="label">
+          <%= form.label :user %>
+          <%= form.select :user_id, User.all.collect {|u| [u.name, u.id]} %>
         </p>
         <br />
         <p class="buttons">
