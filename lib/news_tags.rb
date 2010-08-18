@@ -130,6 +130,13 @@ module NewsTags
     tag.locals.news.start
   end
 
+  desc %{
+    Returns author of the news entry
+  }
+  tag 'news:author' do |tag|
+    tag.locals.news.user.name unless tag.locals.news.user.blank?
+  end
+
   def currentnews(parameter)
     curr_date = Time.now
     str_conditions = 'start <=  ? and (stop is null or stop >= ?)'

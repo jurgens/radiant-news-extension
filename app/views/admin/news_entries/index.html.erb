@@ -10,7 +10,7 @@
        <% @news_entries.each do |news| %>
          <tr  class="node level-0">
            <td class="page"><%= link_to  "(#{news.id}) #{news.headline}", { :action => 'edit', :id => news.id } %></td>
-           <td><%=link_to news.user.name, admin_user_url(news.user)%></td>
+           <td><%=link_to(news.user.name, admin_user_url(news)) unless news.user.blank?%></td>
            <td class="remove"><%= link_to 'Remove', remove_admin_news_entry_url(:id => news.id) %></td>
          </tr>
       <%end%>
